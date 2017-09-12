@@ -23,7 +23,7 @@
           </router-link>
         </div>
 
-        <q-btn :disabled="$v.form.$error" class="margin-top-20" color="primary" @click="submit">Submit</q-btn>
+        <q-btn outline :disabled="$v.form.$error" class="margin-top-20" color="primary" @click="submit">Submit</q-btn>
       </q-card-main>
     
     </q-card>
@@ -62,11 +62,15 @@ export default {
   },
   methods: {
     submit () {
-      this.$v.form.$touch()
-      if (this.$v.form.$error) {
-        Toast.create('Please review fields again.')
+      const { form } = this.$v
+      // form.$touch()
+      if (form.$error) {
+        Toast.create.negative('Please review fields again.')
       }
     }
+  },
+  mounted () {
+    Toast.create.negative('Please review fields again.')
   }
 }
 </script>
