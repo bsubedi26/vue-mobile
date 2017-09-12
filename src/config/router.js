@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginPage from 'src/components/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -23,9 +22,9 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/', component: load('Hello') },
-    // { path: '/login', component: load('Login') },
-    { path: '/login', component: LoginPage },
+    { path: '/', component: load('Home') },
+    { path: '/login', component: load('Login') },
+    { path: '/signup', component: load('Signup') },
     // Always leave this last one
     { path: '*', component: load('Error404') } // Not found
   ]
