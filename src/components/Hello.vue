@@ -41,6 +41,19 @@
     </div>
     
     <q-btn color="dark">Button</q-btn>
+
+
+    <q-card>
+      <q-card-title>
+        Card Title
+      </q-card-title>
+      <q-card-separator />
+      <q-card-main>
+        Card Content
+      </q-card-main>
+    </q-card>
+
+
     <!--
       Replace following <div> with
       <router-view /> component
@@ -61,7 +74,6 @@ import {
   QLayout,
   QToolbar,
   QToolbarTitle,
-  QBtn,
   QIcon,
   QList,
   QListHeader,
@@ -76,7 +88,6 @@ export default {
     QLayout,
     QToolbar,
     QToolbarTitle,
-    QBtn,
     QIcon,
     QList,
     QListHeader,

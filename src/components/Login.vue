@@ -1,6 +1,19 @@
 <template>
   <div class="login mt-3">
-    <app-navbar />
+
+
+    <q-card>
+      <q-card-title>
+        Card Title
+      </q-card-title>
+      <q-card-separator />
+      <q-card-main>
+        Card Content
+      </q-card-main>
+    </q-card>
+
+
+
     <el-card style="max-width:550px;margin:auto;">
       <el-alert class="p-2 mb-3" v-if="serviceError" :title="serviceError.message" type="error" show-icon>
       </el-alert>
