@@ -28,6 +28,8 @@
     
     </q-card>
 
+    <q-inner-loading :visible="$isLoading('users/create')" />
+
   </div>
 </template>
 
@@ -62,11 +64,21 @@ export default {
   },
   methods: {
     submit () {
-      const { form } = this.$v
-      // form.$touch()
-      if (form.$error) {
-        Toast.create.negative('Please review fields again.')
-      }
+      const { email, password } = this.form
+      this.$startLoading('users/create')
+      this.$store.dispatch('users/create', { email, password })
+        .then(doc => {
+          console.log('.then ', doc)
+          this.$endLoading('users/create')
+          this.$router.push('/login')
+        })
+        .catch((error) => {
+          console.log('.catch ', error)
+          this.loading = false
+          this.serviceError = error
+          Toast.create.negative('There was a problem. Please try again later.')
+          this.$endLoading('users/create')
+        })
     }
   },
   mounted () {

@@ -10,9 +10,20 @@ require(`quasar/dist/quasar.${__THEME}.css`)
 // require(`quasar/dist/quasar.ie`)
 // require(`quasar/dist/quasar.ie.${__THEME}.css`)
 import Vue from 'vue'
-import Quasar, { QBtn, QCard, QCardTitle, QCardSeparator, QCardMain, QLayout, QInput } from 'quasar'
+import Quasar, {
+  QBtn,
+  QCard,
+  QCardTitle,
+  QCardSeparator,
+  QCardMain,
+  QLayout,
+  QInput,
+  QInnerLoading
+} from 'quasar'
+
 import Vuelidate from 'vuelidate'
 import router from './config/router'
+import store from './config/store'
 
 import 'element-ui/lib/theme-default/index.css'
 import ElementUI from 'element-ui'
@@ -26,7 +37,8 @@ Vue.use(Quasar, {
     QCardTitle,
     QCardSeparator,
     QCardMain,
-    QInput
+    QInput,
+    QInnerLoading
   }
 }) // Install Quasar Framework
 Vue.use(ElementUI)
@@ -45,6 +57,7 @@ Quasar.start(() => {
   new Vue({
     el: '#q-app',
     router,
+    store,
     render: h => h(require('./App'))
   })
 })

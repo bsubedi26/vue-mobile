@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-function load (component) {
-  // '@' is aliased to src/components
-  return () => import(`@/${component}.vue`)
+function load (page) {
+  // '@' is aliased to src/pages
+  return () => import(`@/${page}.vue`)
 }
 
 export default new VueRouter({
