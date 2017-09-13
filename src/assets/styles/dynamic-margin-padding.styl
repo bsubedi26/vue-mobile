@@ -1,0 +1,23 @@
+$directions = {
+  top: 'top',
+  bottom: 'bottom',
+  left: 'left',
+  right: 'right'
+}
+
+$properties = {
+  margin: 'margin',
+  padding: 'padding'
+}
+
+for property in ($properties)
+  for direction in ($directions)
+    for num in range(0,40,5)
+
+      .{property}-{num} {
+        {property}: unit(num, 'px')
+      }
+
+      .{property}-{direction}-{num} {
+        {property}-{direction}: unit(num, 'px')
+      }

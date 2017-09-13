@@ -24,7 +24,7 @@
         <q-list no-border link inset-delimiter>
           <q-list-header>Routes</q-list-header>
 
-          <q-side-link class="navLink" :to="link.path" v-for="link in links" :key="link.name">
+          <q-side-link class="side-nav-link" :to="link.path" v-for="link in links" :key="link.name">
             <q-item>
               <q-item-side>
                 <i :class="link.icon" aria-hidden="true"></i>
@@ -92,41 +92,8 @@ export default {
 </script>
 
 <style lang="stylus">
-// ~variables is a Webpack alias (defined in /config/index.js)
-// which points to /src/themes/quasar.variables.styl
-@import '~variables'
-
-$directions = {
-  top: 'top',
-  bottom: 'bottom',
-  left: 'left',
-  right: 'right'
-}
-
-$properties = {
-  margin: 'margin',
-  padding: 'padding'
-}
-
-.navLink {
-  cursor: pointer
-  &:hover {
-    background: rgba(189,189,189,0.4)
-  }
-}
-
-for property in ($properties)
-  for direction in ($directions)
-    for num in range(0,40,5)
-
-      .{property}-{num} {
-        {property}: unit(num, 'px')
-      }
-
-      .{property}-{direction}-{num} {
-        {property}-{direction}: unit(num, 'px')
-      }
-
-
+  // ~variables is a Webpack alias (defined in /config/index.js)
+  // which points to /src/themes/quasar.variables.styl
+  @import '~variables'
+  @import 'assets/styles/main.styl'
 </style>
-

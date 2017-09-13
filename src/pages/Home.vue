@@ -2,7 +2,20 @@
   <div class="bg-grey-3 home-page">
     <div class="home-content">
       Main Page
+
     </div>
+    
+    <app-modal />
+<!--    
+  <q-modal ref="basicModal">
+    <h4>Basic Modal</h4>
+    <q-btn color="primary" @click="$refs.basicModal.close()">Close</q-btn>
+  </q-modal>
+  
+  <q-btn color="primary" @click="$refs.basicModal.open()">Open</q-btn>-->
+  
+
+    
   </div>
 </template>
 

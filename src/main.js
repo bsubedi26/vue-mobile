@@ -18,7 +18,8 @@ import Quasar, {
   QCardMain,
   QLayout,
   QInput,
-  QInnerLoading
+  QInnerLoading,
+  QModal
 } from 'quasar'
 
 import Vuelidate from 'vuelidate'
@@ -27,6 +28,7 @@ import store from './config/store'
 
 import 'element-ui/lib/theme-default/index.css'
 import ElementUI from 'element-ui'
+import './components/index'
 
 Vue.config.productionTip = false
 Vue.use(Quasar, {
@@ -38,7 +40,8 @@ Vue.use(Quasar, {
     QCardSeparator,
     QCardMain,
     QInput,
-    QInnerLoading
+    QInnerLoading,
+    QModal
   }
 }) // Install Quasar Framework
 Vue.use(ElementUI)
