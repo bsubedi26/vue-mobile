@@ -4,7 +4,7 @@ import setupMutations from './mutations'
 import setupActions from './actions'
 import * as getters from './getters'
 import state from './state'
-import feathers from '../../feathers'
+// import feathers from '../../feathers'
 
 export default function setupAuthModule (store) {
   const options = {
@@ -18,8 +18,8 @@ export default function setupAuthModule (store) {
   const { auth } = options
   const { namespace } = auth
 
-  const mutations = setupMutations(feathers, options)
-  const actions = setupActions(feathers, options)
+  const mutations = setupMutations()
+  const actions = setupActions()
 
   store.registerModule(namespace, {
     namespaced: true,

@@ -65,24 +65,25 @@ export default {
   methods: {
     submit () {
       const { email, password } = this.form
-      this.$startLoading('users/create')
-      this.$store.dispatch('users/create', { email, password })
+      const userCredentials = { email, password, name: email }
+      // this.$startLoading('users/create')
+      this.$store.dispatch('auth/register', userCredentials)
         .then(doc => {
           console.log('.then ', doc)
-          this.$endLoading('users/create')
-          this.$router.push('/login')
+          // this.$endLoading('users/create')
+          // this.$router.push('/login')
         })
         .catch((error) => {
           console.log('.catch ', error)
-          this.loading = false
-          this.serviceError = error
+          // this.loading = false
+          // this.serviceError = error
           Toast.create.negative('There was a problem. Please try again later.')
-          this.$endLoading('users/create')
+          // this.$endLoading('users/create')
         })
     }
   },
   mounted () {
-    Toast.create.negative('Please review fields again.')
+    // Toast.create.negative('Please review fields again.')
   }
 }
 </script>

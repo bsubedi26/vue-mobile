@@ -24,7 +24,7 @@ import Quasar, {
 
 import Vuelidate from 'vuelidate'
 import router from './config/router'
-import store from './config/store'
+import store from './store'
 
 import 'element-ui/lib/theme-default/index.css'
 import ElementUI from 'element-ui'

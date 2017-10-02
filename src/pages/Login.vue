@@ -24,6 +24,7 @@
         </div>
       
         <q-btn :disabled="$v.form.$error" class="margin-top-20" color="primary" @click="handleSubmit">Submit</q-btn>
+        <q-btn class="margin-top-20" color="secondary" @click="checkCookie">Check Cookie</q-btn>
       </q-card-main>
 
     </q-card>
@@ -75,24 +76,23 @@ export default {
     go (path) {
       this.$router.push(path)
     },
+    checkCookie () {
+      this.$store.dispatch('auth/checkCookie')
+    },
     handleSubmit () {
-      const { email, password } = this.form
-      this.$startLoading('auth/authenticate')
-      this.$store.dispatch('auth/authenticate', {
-        strategy: 'local',
-        email: email,
-        password: password
-      })
+      const userCredentials = {...this.form, name: this.form.email}
+      // this.$startLoading('auth/authenticate')
+      this.$store.dispatch('auth/login', userCredentials)
         .then((response) => {
           console.log('.then ', response)
-          this.$endLoading('auth/authenticate')
-          this.$router.push('/')
+          // this.$endLoading('auth/authenticate')
+          // this.$router.push('/')
         })
         .catch((error) => {
           console.log('.catch ', error)
-          this.serviceError = error
+          // this.serviceError = error
           Toast.create.negative('There was a problem. Please try again later.')
-          this.$endLoading('auth/authenticate')
+          // this.$endLoading('auth/authenticate')
         })
     }
   }

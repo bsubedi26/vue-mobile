@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { createVuexLoader } from 'vuex-loading'
 // import createPersistedState from 'vuex-persistedstate'
 // import IdleVue from 'idle-vue'
-
-import { createVuexLoader } from 'vuex-loading'
-import authModule from './store/auth'
-import fClient from './feathers'
-import fVuex from 'feathers-vuex'
+import authModule from './auth'
 
 const VuexLoading = createVuexLoader({
   moduleName: 'loading',
@@ -17,10 +14,6 @@ const VuexLoading = createVuexLoader({
 Vue.use(Vuex)
 Vue.use(VuexLoading)
 
-const featherVuex = fVuex(fClient, {
-  idField: '_id'
-})
-
 const store = new Vuex.Store({
   modules: {
     // product,
@@ -28,10 +21,7 @@ const store = new Vuex.Store({
   },
   plugins: [
     authModule,
-    VuexLoading.Store,
-    featherVuex.service('/email'),
-    featherVuex.service('/message'),
-    featherVuex.service('/users')
+    VuexLoading.Store
     // createPersistedState()
   ]
 })
