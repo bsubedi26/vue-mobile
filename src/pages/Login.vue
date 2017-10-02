@@ -1,42 +1,44 @@
 <template>
   <div class="login mt-3">
-
-
+  
     <q-card class="margin-top-30 width-550">
-
+  
       <q-card-title class="text-center">
         <h4 class="card-title"> {{ cardHeader }}</h4>
         <!-- <h4 v-if="serviceError" class="card-title"> {{ serviceError }}</h4> -->
       </q-card-title>
       <q-card-separator />
-          
+  
       <q-card-main>
         <q-input v-model="form.email" @blur="$v.form.email.$touch" @keyup.enter="handleSubmit" :error="$v.form.email.$error" float-label="*Email" />
         <span class="text-negative" v-if="$v.form.email.$error">Please provide a valid email address.</span>
-      
+  
         <q-input type="password" v-model="form.password" @blur="$v.form.password.$touch" @keyup.enter="handleSubmit" :error="$v.form.password.$error" float-label="*Password" />
         <span class="text-negative" v-if="$v.form.password.$error">Please provide a valid password.</span>
         <br />
-      
+  
         <div class="text-grey-6 margin-top-15">
           Don't have an Account?
-          <router-link to="/signup"><span class="text-primary">Signup here.</span></router-link>
+          <router-link to="/signup">
+            <span class="text-primary">Signup here.</span>
+          </router-link>
         </div>
-      
+  
         <q-btn :disabled="$v.form.$error" class="margin-top-20" color="primary" @click="handleSubmit">Submit</q-btn>
         <q-btn class="margin-top-20" color="secondary" @click="checkCookie">Check Cookie</q-btn>
       </q-card-main>
-
+  
     </q-card>
-
-    <q-inner-loading :visible="$isLoading('auth/authenticate')" />
-
+  
+    <q-inner-loading :visible="$isLoading('auth/login')" />
+  
   </div>
 </template>
 
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import { Toast } from 'quasar'
+import { delay } from 'src/util'
 
 export default {
   name: 'app-login',
@@ -56,44 +58,40 @@ export default {
     form: {
       email: {
         required,
-        minLength: minLength(4),
+        minLength: minLength(1),
         email
       },
       password: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(1)
       }
     }
   },
   methods: {
-    submit () {
-      // const { email, password } = this.form
-      // this.$v.form.$touch()
-      // if (this.$v.form.$error) {
-      //   Toast.create('Please review fields again.')
-      // }
-    },
     go (path) {
       this.$router.push(path)
     },
     checkCookie () {
       this.$store.dispatch('auth/checkCookie')
     },
-    handleSubmit () {
-      const userCredentials = {...this.form, name: this.form.email}
-      // this.$startLoading('auth/authenticate')
-      this.$store.dispatch('auth/login', userCredentials)
-        .then((response) => {
-          console.log('.then ', response)
-          // this.$endLoading('auth/authenticate')
-          // this.$router.push('/')
-        })
-        .catch((error) => {
-          console.log('.catch ', error)
-          // this.serviceError = error
-          Toast.create.negative('There was a problem. Please try again later.')
-          // this.$endLoading('auth/authenticate')
-        })
+
+    async handleSubmit () {
+      const { email, password } = this.form
+      const userCredentials = { email, password, name: email }
+      this.$startLoading('auth/login')
+      try {
+        await this.$store.dispatch('auth/login', userCredentials)
+        await delay(1500)
+        Toast.create.positive('Login successful!')
+        this.$endLoading('auth/login')
+        this.$router.push('/')
+      }
+      catch (error) {
+        const { message } = error.data
+        await delay(1500)
+        Toast.create.negative(message)
+        this.$endLoading('auth/login')
+      }
     }
   }
 }

@@ -1,16 +1,6 @@
 import axios from 'axios'
 import API from '../../config/api'
-
-const catchError = (err) => {
-  console.log('.catch error! ', err)
-  if (err.response && err.response.status === 401) {
-    window.location.href = '#/login'
-  }
-  if (!err.response) {
-    return Promise.reject(new Error('There was no response from the request.'))
-  }
-  return Promise.reject(err)
-}
+import { catchError } from 'src/util'
 
 // allow cross-domain requests to bring cookies
 axios.defaults.withCredentials = true
@@ -18,30 +8,24 @@ axios.interceptors.response.use(null, catchError)
 
 export default function makeAuthActions () {
   const actions = {
-    checkCookie () {
-      return axios.get(`${API.USER}/cookie`).then(res => {
-        // commit('SET_USER', res.data)
-        console.log('.then ', res)
-        return res
-      })
+    async checkCookie () {
+      const response = await axios.get(`${API.USER}/cookie`)
+      return response
     },
-    register ({ commit }, user) {
-      return axios.post(`${API.USER}/register`, user).then(res => {
-        // commit('SET_USER', res.data)
-        return res
-      })
+    async signup ({ commit }, user) {
+      const response = await axios.post(`${API.USER}/signup`, user)
+      // commit('SET_USER', res.data)
+      return response
     },
-    login ({ commit }, user) {
-      return axios.post(`${API.USER}/login`, user).then(res => {
-        // commit('SET_USER', res.data)
-        return res
-      })
+    async login ({ commit }, user) {
+      const response = await axios.post(`${API.USER}/login`, user)
+      // commit('SET_USER', res.data)
+      return response
     },
-    logout ({ commit }) {
-      return axios.get(`${API.USER}/logout`).then(res => {
-        commit('SET_USER', null)
-        return res
-      })
+    async logout ({ commit }) {
+      const response = await axios.get(`${API.USER}/logout`)
+      // commit('SET_USER', null)
+      return response
     },
     async deleteAccount (store, _id) {
       if (!_id) { return }

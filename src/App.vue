@@ -75,8 +75,8 @@ export default {
   data () {
     return {
       links: [
-        { name: 'Home', path: '/', icon: 'fa fa-home', sublabel: 'Go Home' },
-        { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Go Login' },
+        { name: 'Home', path: '/', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
+        { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
         { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
       ]
     }

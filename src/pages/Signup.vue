@@ -28,7 +28,7 @@
     
     </q-card>
 
-    <q-inner-loading :visible="$isLoading('users/create')" />
+    <q-inner-loading :visible="$isLoading('auth/signup')" />
 
   </div>
 </template>
@@ -36,6 +36,7 @@
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import { Toast } from 'quasar'
+import { delay } from 'src/util'
 
 export default {
   name: 'app-signup',
@@ -53,37 +54,37 @@ export default {
     form: {
       email: {
         required,
-        minLength: minLength(4),
+        minLength: minLength(1),
         email
       },
       password: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(1)
       }
     }
   },
   methods: {
-    submit () {
+    async submit () {
       const { email, password } = this.form
       const userCredentials = { email, password, name: email }
-      // this.$startLoading('users/create')
-      this.$store.dispatch('auth/register', userCredentials)
-        .then(doc => {
-          console.log('.then ', doc)
-          // this.$endLoading('users/create')
-          // this.$router.push('/login')
-        })
-        .catch((error) => {
-          console.log('.catch ', error)
-          // this.loading = false
-          // this.serviceError = error
-          Toast.create.negative('There was a problem. Please try again later.')
-          // this.$endLoading('users/create')
-        })
+      this.$startLoading('auth/signup')
+      try {
+        await this.$store.dispatch('auth/signup', userCredentials)
+        await delay(1500)
+        Toast.create.positive('Successfully registered an account. Please login.')
+        this.$endLoading('auth/signup')
+        this.$router.push('/login')
+      }
+      catch (error) {
+        const { message } = error.data
+        await delay(1500)
+        Toast.create.negative(message)
+        this.$endLoading('auth/signup')
+      }
     }
   },
   mounted () {
-    // Toast.create.negative('Please review fields again.')
+
   }
 }
 </script>
