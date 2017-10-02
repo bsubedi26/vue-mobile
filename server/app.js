@@ -1,5 +1,8 @@
 module.exports = app => {
   class AbstractController extends app.Controller {
+    throw (msg) {
+      this.ctx.throw(400, msg)
+    }
     success (data) {
       this.ctx.status = 200
       this.ctx.body = data
@@ -22,6 +25,5 @@ module.exports = app => {
       this.ctx.throw(404, msg)
     }
   }
-
   app.Controller = AbstractController
 }

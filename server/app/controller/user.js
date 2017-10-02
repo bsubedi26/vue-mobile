@@ -1,6 +1,10 @@
 const md5 = require('blueimp-md5')
 module.exports = app => {
   class UserController extends app.Controller {
+    async test () {
+      // const response = await Promise.resolve('done')
+      this.throw('ERROR!')
+    }
     * search () {
       const { query = '' } = this.ctx.query
       const users = yield this.service.user.find(query).lean()
