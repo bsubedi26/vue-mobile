@@ -84,3 +84,36 @@ module.exports = app.listen(port, function (err) {
     })
   }
 })
+
+/**
+  * Temporarily setup https protocol for development testing
+*/
+
+// var https = require('https')
+// var fs = require('fs')
+
+// var pkey = fs.readFileSync(process.cwd() + '/build/cert/keytmp.pem')
+// var pcert = fs.readFileSync(process.cwd() + '/build/cert/cert.pem')
+
+// var options = {
+//   key: pkey,
+//   cert: pcert,
+//   requestCert: false,
+//   rejectUnauthorized: false,
+//   passphrase: 'root'
+// }
+
+// var server = https.createServer(options, app)
+
+// module.exports = server.listen(port, function (err) {
+//   if (err) {
+//     console.log(err)
+//     process.exit(1)
+//   }
+//   // open browser if set so in /config/index.js
+//   if (config.dev.openBrowser) {
+//     devMiddleware.waitUntilValid(function () {
+//       opn('https://localhost:' + port)
+//     })
+//   }
+// })

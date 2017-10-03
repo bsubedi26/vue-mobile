@@ -87,7 +87,7 @@ export default {
         this.$router.push('/')
       }
       catch (error) {
-        const { message } = error.data
+        const message = error.data ? error.data.message : 'There was a problem. Try again later.'
         await delay(1500)
         Toast.create.negative(message)
         this.$endLoading('auth/login')
