@@ -12,6 +12,9 @@
           Vue Mobile
           <div slot="subtitle">Version: {{$q.version}}</div>
         </q-toolbar-title>
+        <q-btn flat @click="handleLogout()">
+          Logout
+        </q-btn>  
       </q-toolbar>
 
       <!-- Left Side Panel -->
@@ -82,6 +85,9 @@ export default {
     }
   },
   methods: {
+    handleLogout () {
+      this.$store.dispatch('auth/logout')
+    },
     goToRoute (path) {
       console.log(path)
       console.log(this.$router)

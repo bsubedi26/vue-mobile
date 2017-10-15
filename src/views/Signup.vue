@@ -65,18 +65,16 @@ export default {
   },
   methods: {
     async submit () {
-      const { email, password } = this.form
-      const userCredentials = { email, password, name: email }
-      this.$startLoading('auth/signup')
       try {
-        await this.$store.dispatch('auth/signup', userCredentials)
+        this.$startLoading('auth/signup')
+        await this.$store.dispatch('auth/signup', this.form)
         await delay(1500)
         Toast.create.positive('Successfully registered an account. Please login.')
         this.$endLoading('auth/signup')
         this.$router.push('/login')
       }
       catch (error) {
-        const message = error.data ? error.data.message : 'There was a problem. Try again later.'
+        const message = error.message ? error.message : 'There was a problem. Try again later.'
         await delay(1500)
         Toast.create.negative(message)
         this.$endLoading('auth/signup')

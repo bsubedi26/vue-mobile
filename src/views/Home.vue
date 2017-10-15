@@ -2,11 +2,9 @@
   <div class="bg-grey-3 home-page">
     <div class="home-content">
 
-      <img src="statics/quasar-logo.png" alt="" />
-
     </div>
     
-    <app-modal />
+    <!-- <app-modal /> -->
 <!--    
   <q-modal ref="basicModal">
     <h4>Basic Modal</h4>

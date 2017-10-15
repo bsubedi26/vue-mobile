@@ -1,5 +1,4 @@
 export { default as catchError } from './catchError'
 export { default as delay } from './delay'
-export { default as getDomain } from './getDomain'
-export { default as API } from './api'
+export { default as getHost } from './getHost'
 export { default as feathers } from './feathers'

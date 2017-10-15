@@ -4,6 +4,9 @@ export default function makeAuthActions (feathers, options) {
 
   const actions = {
 
+    signup (store, payload) {
+      return userService.create(payload)
+    },
     async deleteAccount (store, _id) {
       console.log('delete id ', _id)
       // WARNING: remove(undefined) deletes ALL documents
@@ -18,12 +21,7 @@ export default function makeAuthActions (feathers, options) {
       return Promise.resolve(results)
     },
     authenticate (store, data) {
-      const { commit, state, dispatch } = store
-
-      commit('setAuthenticatePending')
-      if (state.errorOnAuthenticate) {
-        commit('clearAuthenticateError')
-      }
+      const { commit, dispatch } = store
       return feathers.authenticate(data)
         .then(response => {
           commit('setAccessToken', response.accessToken)
