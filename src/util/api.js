@@ -1,5 +1,5 @@
 import { mapValues } from 'lodash'
-import { getDomain } from 'src/util'
+import { getDomain } from './index'
 
 export default mapValues({
   USER: 'auth/user',

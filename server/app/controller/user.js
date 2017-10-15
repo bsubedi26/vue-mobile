@@ -2,8 +2,15 @@ const md5 = require('blueimp-md5')
 module.exports = app => {
   class UserController extends app.Controller {
     async test () {
-      // const response = await Promise.resolve('done')
-      this.throw('ERROR!')
+      console.log(app.knex)
+      const { knex } = app
+      knex.schema.createTable('first', t => {
+        t.increments('id').primary()
+        t.string('text').notNullable()
+      })
+        .then(() => console.log(`Updated first table..`))
+        .catch((e) => console.log(e))
+      this.success({})
     }
     * search () {
       const { query = '' } = this.ctx.query

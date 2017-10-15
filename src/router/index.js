@@ -1,14 +1,12 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
+import routerAuth from './auth'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-function load (page) {
-  // '@' is aliased to src/pages
-  return () => import(`@/${page}.vue`)
-}
+const load = (page) => () => import(`@/${page}.vue`) // '@' is alias for src/views
 
-export default new VueRouter({
+const router = new Router({
   /*
    * NOTE! VueRouter "history" mode DOESN'T works for Cordova builds,
    * it is only to be used only for websites.
@@ -25,7 +23,11 @@ export default new VueRouter({
     { path: '/', component: load('Home') },
     { path: '/login', component: load('Login') },
     { path: '/signup', component: load('Signup') },
-    // Always leave this last one
+    // Lx eave error as last component
     { path: '*', component: load('Error404') } // Not found
   ]
 })
+
+routerAuth(router)
+
+export default router

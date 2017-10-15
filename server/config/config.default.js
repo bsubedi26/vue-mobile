@@ -3,6 +3,19 @@ module.exports = appInfo => {
     bodyParser: {
       jsonLimit: '500kb'
     },
+    knex: {
+      default: {
+        dialect: 'sqlite',
+        connection: {
+          filename: 'db.sqlite'
+        },
+        pool: { min: 0, max: 5 },
+        acquireConnectionTimeout: 30000
+      },
+      app: true,
+      agent: false
+
+    },
     mongoose: {
       url: 'mongodb://127.0.0.1/api'
     },

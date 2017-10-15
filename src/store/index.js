@@ -26,10 +26,9 @@ const store = new Vuex.Store({
   ]
 })
 
-// const idleOptions = { 
-//   idleTime: 3000,
-//   store: store
-// }
-// Vue.use(IdleVue, idleOptions)
+// Vue.use(IdleVue, { 
+//   store,
+//   idleTime: 3000
+// })
 
 export default store

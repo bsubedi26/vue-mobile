@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'production'
+// process.env.NODE_ENV = 'production'
 
 require('egg').startCluster({
   // If you need https, please cancel the comment and configure the certificate file

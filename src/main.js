@@ -5,10 +5,15 @@
 // 2. or, use next line to activate DEFAULT QUASAR STYLE
 require(`quasar/dist/quasar.${__THEME}.css`)
 // ==============================
-
+import 'quasar-extras/material-icons'
+// import 'quasar-extras/fontawesome'
+// import 'quasar-extras/ionicons'
+// import 'quasar-extras/animate'
+if (__THEME === 'mat') require('quasar-extras/roboto-font')
 // Uncomment the following lines if you need IE11/Edge support
 // require(`quasar/dist/quasar.ie`)
 // require(`quasar/dist/quasar.ie.${__THEME}.css`)
+
 import Vue from 'vue'
 import Quasar, {
   QBtn,
@@ -21,16 +26,12 @@ import Quasar, {
   QInnerLoading,
   QModal
 } from 'quasar'
-
 import Vuelidate from 'vuelidate'
-import router from './config/router'
+import router from './router'
 import store from './store'
 
-import 'element-ui/lib/theme-default/index.css'
-import ElementUI from 'element-ui'
 import './components/index'
 
-Vue.config.productionTip = false
 Vue.use(Quasar, {
   components: {
     QLayout,
@@ -43,18 +44,14 @@ Vue.use(Quasar, {
     QInnerLoading,
     QModal
   }
-}) // Install Quasar Framework
-Vue.use(ElementUI)
+})
+
 Vue.use(Vuelidate)
 
-if (__THEME === 'mat') {
-  require('quasar-extras/roboto-font')
-}
-import 'quasar-extras/material-icons'
-// import 'quasar-extras/ionicons'
-import 'quasar-extras/fontawesome'
-// import 'quasar-extras/animate'
-
+/* 
+  * INITIALIZE MAIN APPLICATION
+*/
+Vue.config.productionTip = false
 Quasar.start(() => {
   /* eslint-disable no-new */
   new Vue({

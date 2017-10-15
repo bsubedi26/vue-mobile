@@ -1,7 +1,8 @@
 <template>
   <div class="bg-grey-3 home-page">
     <div class="home-content">
-      Main Page
+
+      <img src="statics/quasar-logo.png" alt="" />
 
     </div>
     

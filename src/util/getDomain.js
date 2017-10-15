@@ -3,7 +3,7 @@
 */
 const config = {
   dev: {
-    serverRoot: 'localhost:7001'
+    serverRoot: 'localhost:3030'
   },
   prod: {
     serverRoot: 'api.example.com'
@@ -12,7 +12,7 @@ const config = {
 
 /**
  * Returns the AJAX HTTP url depending on the environment (dev/prod)
- * @returns {domain} Example: (dev: http://localhost:7001, prod: http://api.url.com)
+ * @returns {domain} Example: (dev: http://localhost:3030, prod: http://api.url.com)
  */
 export default () => {
   const http = window.location.href.indexOf('https') === 0 ? 'https://' : 'http://'

@@ -39,9 +39,7 @@ export default function makeAuthMutations (feathers, options) {
     logout (state) {
       state.payload = undefined
       state.accessToken = undefined
-      if (state.user) {
-        state.user = undefined
-      }
+      if (state.user) state.user = undefined
     }
   }
 }
