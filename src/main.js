@@ -24,18 +24,21 @@ import Quasar, {
   QLayout,
   QInput,
   QInnerLoading,
+  QChip,
   QModal
 } from 'quasar'
 import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
-
+import { checkPercentChange } from './filter'
 import './components/index'
 
+Vue.filter('checkPercentChange', checkPercentChange)
 Vue.use(Quasar, {
   components: {
     QLayout,
     QBtn,
+    QChip,
     QCard,
     QCardTitle,
     QCardSeparator,

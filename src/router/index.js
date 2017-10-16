@@ -20,6 +20,7 @@ const router = new Router({
    */
 
   routes: [
+    { path: '/currency/:name', component: load('CurrencyDetails') },
     { path: '/', component: load('Home') },
     { path: '/login', component: load('Login') },
     { path: '/signup', component: load('Signup') },

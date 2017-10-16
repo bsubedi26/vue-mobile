@@ -1,29 +1,76 @@
 <template>
-  <div class="bg-grey-3 home-page">
-    <div class="home-content">
+  <div class="bg-grey-3 home-page row items-center">
+    <div class="layout-padding br bw2 b--black col-6">
+      <div class="row justify-center">
+        <q-btn color="primary" @click="fetchData()">
+          Fetch Data
+        </q-btn>
+      </div>
 
     </div>
-    
-    <!-- <app-modal /> -->
-<!--    
-  <q-modal ref="basicModal">
-    <h4>Basic Modal</h4>
-    <q-btn color="primary" @click="$refs.basicModal.close()">Close</q-btn>
-  </q-modal>
-  
-  <q-btn color="primary" @click="$refs.basicModal.open()">Open</q-btn>-->
-  
 
-    
+    <div class="layout-padding col-6">
+      <div class="row justify-center">
+        Environment: {{ env.NODE_ENV }}
+      </div>
+    </div>
+
+    <div @click="handleClick(currency)" class="bg-washed-yellow layout-padding col-6 cursor-pointer grow" v-for="currency in currencies" :key="currency.name">
+
+      <div class="row justify-center pa1">
+        <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+      </div>
+      <div class="row justify-center pa1">
+        {{currency.name}}
+      </div>
+      <div class="row justify-center pa1">
+        ${{currency.price_usd}}
+      </div>
+
+      <div class="row justify-center pa1" 
+      :class="{ red: isPercentChangeNegative(currency.percent_change_7d), green: !isPercentChangeNegative(currency.percent_change_7d) }"
+      >
+        {{currency.percent_change_7d | checkPercentChange }}
+      </div>
+
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    currencies () {
+      return this.$store.getters['crypto/currencies']
+    }
+  },
+  mounted () {
+    console.log(process.env)
+    this.env = process.env
+  },
   name: 'index',
   data () {
     return {
-
+      env: {},
+      error: '',
+      returnedData: {}
+    }
+  },
+  methods: {
+    handleClick (currency) {
+      console.log(currency)
+      this.$router.push(`currency/${currency.id}`)
+    },
+    fetchData () {
+      this.$store.dispatch('crypto/fetch')
+    },
+    isPercentChangeNegative (percentChange) {
+      // if first character is negative
+      if (percentChange[0] === '-') {
+        return true
+      }
+      return false
     }
   }
 }
@@ -31,27 +78,32 @@ export default {
 
 <style lang="stylus">
 .home-page {
-  width: 600px;
-  height: 300px;
-  max-width: 768px;
-  margin: auto;
 }
-.home-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+
+// .home-page {
+// width: 600px;
+// height: 300px;
+// max-width: 768px;
+// margin: auto;
+// }
+// .home-content {
+// display: flex;
+// align-items: center;
+// justify-content: center;
+// height: 100%;
+// }
+.logo-container {
+  width: 255px;
+  height: 242px;
+  perspective: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
-.logo-container
-  width 255px
-  height 242px
-  perspective 800px
-  position absolute
-  top 50%
-  left 50%
-  transform translateX(-50%) translateY(-50%)
-.logo
-  position absolute
-  transform-style preserve-3d
-      
+
+.logo {
+  position: absolute;
+  transform-style: preserve-3d;
+}
 </style>

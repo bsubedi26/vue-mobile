@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <q-card class="margin-top-30 width-550">
       
       <q-card-title class="text-center">

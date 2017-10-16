@@ -4,6 +4,7 @@ import { createVuexLoader } from 'vuex-loading'
 // import createPersistedState from 'vuex-persistedstate'
 // import IdleVue from 'idle-vue'
 import authModule from './auth'
+import crypto from './crypto'
 
 const VuexLoading = createVuexLoader({
   moduleName: 'loading',
@@ -14,14 +15,20 @@ const VuexLoading = createVuexLoader({
 Vue.use(Vuex)
 Vue.use(VuexLoading)
 
+// const actionLogger = (store) => {
+//   store.subscribeAction((action, state) => {
+//     console.log(`Dispatching: "${action.type}" Payload: ${JSON.stringify(action.payload)}`)
+//   })
+// }
+
 const store = new Vuex.Store({
   modules: {
-    // product,
-    // cryptoCurrency
+    crypto
   },
   plugins: [
     authModule,
     VuexLoading.Store
+    // actionLogger
     // createPersistedState()
   ]
 })

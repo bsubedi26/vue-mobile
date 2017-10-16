@@ -3,7 +3,7 @@ import setupMutations from './mutations'
 import setupActions from './actions'
 import * as getters from './getters'
 import state from './state'
-import feathers from 'src/util/feathers'
+import { feathers } from 'src/util'
 
 export default function setupAuthModule (store) {
   const options = {
