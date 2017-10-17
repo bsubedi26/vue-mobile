@@ -3,7 +3,7 @@
     <div class="layout-padding br bw2 b--black col-6">
       <div class="row justify-center">
         <q-btn color="primary" @click="fetchData()">
-          Fetch Data
+          Fetch Currencies
         </q-btn>
       </div>
 
@@ -17,9 +17,14 @@
 
     <div @click="handleClick(currency)" class="bg-washed-yellow layout-padding col-6 cursor-pointer grow" v-for="currency in currencies" :key="currency.name">
 
-      <div class="row justify-center pa1">
+      <div v-if="$q.platform.is.cordova" class="row justify-center pa1">
+        <img width="60" height="60" :src="'/android_asset/www/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+      </div>
+      
+      <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
         <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
       </div>
+
       <div class="row justify-center pa1">
         {{currency.name}}
       </div>
@@ -46,8 +51,10 @@ export default {
     }
   },
   mounted () {
-    console.log(process.env)
     this.env = process.env
+    // console.log('isDesktop ', this.$q.platform.is.desktop)
+    // console.log('isMobile? ', Platform.is.mobile)
+    // console.log('isCordova ', Platform.is.cordova)
   },
   name: 'index',
   data () {
@@ -59,7 +66,7 @@ export default {
   },
   methods: {
     handleClick (currency) {
-      console.log(currency)
+      // console.log(currency)
       this.$router.push(`currency/${currency.id}`)
     },
     fetchData () {

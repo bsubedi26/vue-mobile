@@ -6,7 +6,7 @@
 require(`quasar/dist/quasar.${__THEME}.css`)
 // ==============================
 import 'quasar-extras/material-icons'
-// import 'quasar-extras/fontawesome'
+import 'quasar-extras/fontawesome'
 // import 'quasar-extras/ionicons'
 // import 'quasar-extras/animate'
 if (__THEME === 'mat') require('quasar-extras/roboto-font')
@@ -25,15 +25,17 @@ import Quasar, {
   QInput,
   QInnerLoading,
   QChip,
+  QIcon,
   QModal
 } from 'quasar'
 import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
-import { checkPercentChange } from './filter'
+import { checkPercentChange, currencyWithCommas } from './filter'
 import './components/index'
 
 Vue.filter('checkPercentChange', checkPercentChange)
+Vue.filter('currencyWithCommas', currencyWithCommas)
 Vue.use(Quasar, {
   components: {
     QLayout,
@@ -45,7 +47,8 @@ Vue.use(Quasar, {
     QCardMain,
     QInput,
     QInnerLoading,
-    QModal
+    QModal,
+    QIcon
   }
 })
 

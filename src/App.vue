@@ -9,12 +9,12 @@
         </q-btn>
     
         <q-toolbar-title>
-          Vue Mobile
+          Vue Cryptocurrency
           <div slot="subtitle">Version: {{$q.version}}</div>
         </q-toolbar-title>
-        <q-btn flat @click="handleLogout()">
+        <!-- <q-btn flat @click="handleLogout()">
           Logout
-        </q-btn>  
+        </q-btn>   -->
       </q-toolbar>
 
       <!-- Left Side Panel -->

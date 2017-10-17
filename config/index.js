@@ -39,11 +39,16 @@ module.exports = {
     // to "false", otherwise you can set it to "true" to always
     // have only the messages regarding your last (re)compilation.
     clearConsoleOnRebuild: false,
-
+    proxyTable: {}
     // Proxy your API if using any.
     // Also see /build/script.dev.js and search for "proxy api requests"
     // https://github.com/chimurai/http-proxy-middleware
-    proxyTable: {}
+    // proxyTable: {
+    //   '/api': {
+    //     target: 'http://localhost:3030/',
+    //     changeOrigin: true
+    //   }
+    // }
   }
 }
 

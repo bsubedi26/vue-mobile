@@ -7,9 +7,9 @@
    },
    "bitcoin-cash": {
       "description": "A decentralized peer-to-peer payment network that came into existence as a result of a hard fork from the original bitcoin blockchain. Bitcoin Cash emerged after some of the leading backers disagreed on how to take Bitcoin further and are utilizing a new proposal that consists of a new transaction type and an increase in block limit size.",
-      "website": "",
-      "paper": "",
-      "github": ""
+      "website": "https://www.bitcoincash.org/",
+      "paper": "https://medium.com/@jimmysong/bitcoin-cash-what-you-need-to-know-c25df28995cf",
+      "github": "https://github.com/Bitcoin-ABC/bitcoin-abc"
    },
    "ethereum": {
       "description": "An open-source, public, blockchain-based computing platform that enables developers to build and deploy decentralized applications. Ether (ETH), the crypto token that fuels the Ethereum network acts as a tradeable cryptocurrency and is used to pay for transaction fees and services on the network.",
@@ -26,7 +26,7 @@
    "litecoin": {
       "description": "An open-source peer-to-peer cryptocurrency that uses the scrypt proof of work algorithm as opposed to Bitcoin's hashing algorithm. Litecoin was originally created to improve upon Bitcoin by speeding up transaction confirmations.",
       "website": "https://litecoin.org/",
-      "paper": "",
+      "paper": "https://litecoin.info/",
       "github": "https://github.com/litecoin-project"
    },
    "ethereum-classic": {
@@ -56,7 +56,7 @@
    "monero": {
       "description": "An open-source cryptocurrency that is heavily focused on privacy, decentralisation and scalability. Monero is based on the CryptoNote protocol and has significant algorithmic differences to Bitcoin.",
       "website": "https://getmonero.org/",
-      "paper": "",
+      "paper": "https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf",
       "github": "https://github.com/monero-project"
    },
    "eos": {
@@ -80,14 +80,14 @@
    "bitconnect": {
       "description": "A community driven open-source cryptocurrency that allows BitConnect holders to receive interest due to helping maintain the security of the network.",
       "website": "https://bitconnectcoin.co/",
-      "paper": "",
+      "paper": "https://steemit.com/bitconnect/@crypto-investor/the-bitconnect-whitepaper-maths-of-a-ponzi",
       "github": "https://github.com/bitconnectcoin"
    },
    "tether": {
       "description": "The Tether platform is built on top of open blockchain technologies to allow users to convert fiat cash to digital currency. This is done by tethering the value of the cryptocurrency to the price of national currencies - US Dollar, the Euro and the Yen.",
       "website": "https://tether.to/",
       "paper": "https://bravenewcoin.com/assets/Whitepapers/Tether-White-Paper.pdf",
-      "github": ""
+      "github": "https://tether.to/"
    },
    "zcash": {
       "description": "The first permissionless cryptocurrency that aims to fully protect the privacy of transactions by hiding the sender, recipient and value on the blockchain.",
@@ -110,7 +110,7 @@
    "veritaseum": {
       "description": "A smart contracts-based, peer-to-peer wallet interface (in beta) that currently interacts with Bitcoin blockchain and is to be ported to Ethereum. Veritaseum aims to allow non-technical individuals & entities to quickly create, enter and manage smart contracts directly with others without an authoritative 3rd party.",
       "website": "http://veritas.veritaseum.com/",
-      "paper": "",
+      "paper": "https://veros.org/white-paper.pdf",
       "github": "https://github.com/veritaseum"
    },
    "steem": {
@@ -135,7 +135,7 @@
       "description": "Using Ethereum smart contracts, ICONOMI is a digital assets management platform that aims to provide a simple way for beginners and blockchain experts, to invest and manage their digital assets.",
       "website": "https://www.iconomi.net/",
       "paper": "https://coss.io/documents/white-papers/iconomi.pdf",
-      "github": ""
+      "github": "https://github.com/bokkypoobah/TokenTrader/wiki/ICN-%E2%80%90-Iconomi"
    },
    "gnosis-gno": {
       "description": "Based on Ethereum, Gnosis is a decentralized prediction market platform that aims to disrupt some of the largest existing industries (insurance, financial services) in the near future.",
