@@ -25,7 +25,8 @@
     "vue-router": "^2.7.0",
     "vuelidate": "^0.5.0",
     "vuex": "^2.5.0",
-    "vuex-loading": "^0.1.13"
+    "vuex-loading": "^0.1.13",
+    "vuex-persistedstate": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
