@@ -1,8 +1,6 @@
 <template>
-
-  <div class="bg-grey-3 row">
+  <div>
     <div class="layout-padding col-6">
-
       <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
         <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
       </div>
@@ -12,7 +10,7 @@
       </div>
 
       <div class="row justify-center pa1">
-        {{ currency.name }}
+        <span class="coin-name">{{currency.name}}</span>
       </div>
       
       <div class="row justify-center pa1">
@@ -38,64 +36,55 @@
       </div>
 
 
-    </div>
-
-    <div class="layout-padding col-6">
-      <div class="row justify-center lh150 pa1">
-        {{ currency.description }}
-      </div>
-
-      
-      <div class="row justify-center pa1">
+      <div class="row justify-center pa1 mt2">
         <q-chip class="bg-grey">
           Circulating Supply: {{ currency.available_supply }} {{ currency.symbol }}
         </q-chip>
       </div>
-
 
       <div class="row justify-center pa1">
         <q-chip color="primary">
           Market Cap: $ {{ currency.market_cap_usd | currencyWithCommas }}
         </q-chip>
       </div>
-
+      
     </div>
 
-    <div class="row justify-center pa1 col-6 mb3">
-      <q-btn @click="goBack()" color="dark">
-          Go Back
-      </q-btn>
-    </div>
+    <div class="layout-padding col-6 description-container">
+      
+      <div class="row justify-center lh150 pa1">
+        {{ currency.description }}
+      </div>
 
+    </div>
   </div>
-
 </template>
 
 <script>
-  export default {
-    methods: {
-      goBack () {
-        return this.$router.go(-1)
-      },
-      isPercentChangeNegative (percentChange) {
+export default {
+  name: 'currency-details-item',
+  props: ['currency'],
+  methods: {
+    isPercentChangeNegative (percentChange) {
         // if first character is negative
         if (percentChange[0] === '-') {
-          return true
+        return true
         }
         return false
-      }
-    },
-    computed: {
-      currency () {
-        const { name } = this.$route.params
-        return this.$store.getters['crypto/currency'](name)
-      }
     }
   }
+}
 </script>
 
-<style>
-  a {
-    color: black;
-  }
+<style scoped>
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+    .description-container {
+            margin-top: -20px;
+        }
+    }
+    @media screen and (min-width: 992px) {
+    .description-container {
+            margin-top: -60px;
+        }
+    }
 </style>

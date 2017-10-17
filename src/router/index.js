@@ -4,7 +4,7 @@ import routerAuth from './auth'
 
 Vue.use(Router)
 
-const load = (page) => () => import(`@/${page}.vue`) // '@' is alias for src/views
+const load = (page) => () => import(`@/${page.toLowerCase()}/${page}.vue`) // '@' is alias for src/views
 
 const router = new Router({
   /*
@@ -20,12 +20,12 @@ const router = new Router({
    */
 
   routes: [
-    { path: '/currency/:name', component: load('CurrencyDetails') },
+    { path: '/currency/:name', component: load('Details') },
     { path: '/', component: load('Home') },
     { path: '/login', component: load('Login') },
     { path: '/signup', component: load('Signup') },
-    // Lx eave error as last component
-    { path: '*', component: load('Error404') } // Not found
+    // Error as last component to catch if route is not found
+    { path: '*', component: load('Error') } // Not found
   ]
 })
 
