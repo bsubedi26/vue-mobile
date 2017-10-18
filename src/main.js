@@ -26,7 +26,9 @@ import Quasar, {
   QInnerLoading,
   QChip,
   QIcon,
-  QModal
+  QModal,
+  QTabs,
+  QRouteTab
 } from 'quasar'
 import Vuelidate from 'vuelidate'
 import router from './router'
@@ -48,7 +50,9 @@ Vue.use(Quasar, {
     QInput,
     QInnerLoading,
     QModal,
-    QIcon
+    QIcon,
+    QTabs,
+    QRouteTab
   }
 })
 

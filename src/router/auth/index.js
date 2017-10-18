@@ -4,16 +4,12 @@ const ToastMessage = {}
 export default (router) => {
   const checkAuth = () => {
     const token = window.localStorage.getItem('feathers-jwt')
-    // console.log('router::global statec ', this.a.app.$store.getters.isLoggedIn)
-    if (token == null) {
-      return false
-    }
-    else {
-      return true
-    }
+    if (!token) return false
+    else return true
   }
 
   router.beforeEach((toRoute, fromRoute, next) => {
+    // console.log('route.beforeEach')
     const authenticated = checkAuth()
     if (toRoute.meta.requiresAuth) {
       if (!authenticated) {

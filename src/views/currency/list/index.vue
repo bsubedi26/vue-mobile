@@ -10,7 +10,7 @@
 
     <div class="layout-padding col-6">
       <div class="row justify-center">
-        Environment: {{ env }}
+        <span class="text-green">Environment: {{ env }}</span>
       </div>
     </div>
 
@@ -22,10 +22,13 @@
       <currency-item :currency="currency"></currency-item>
     </div>
 
+    <q-inner-loading :visible="$isLoading('crypto/getTopTenCoins')" />
+
   </div>
 </template>
 
 <script>
+import { Toast } from 'quasar'
 import CurrencyItem from './item'
 
 export default {
@@ -43,7 +46,7 @@ export default {
     // console.log('isMobile? ', Platform.is.mobile)
     // console.log('isCordova ', Platform.is.cordova)
   },
-  name: 'views-home',
+  name: 'currency-list',
   data () {
     return {
       env: ''
@@ -51,11 +54,20 @@ export default {
   },
   methods: {
     routeChange (path) {
-      console.log(path)
-      this.$router.push(`currency/${path.id}`)
+      this.$router.push(`currency/details/${path.id}`)
     },
-    fetchData () {
-      this.$store.dispatch('crypto/fetch')
+    async fetchData () {
+      try {
+        this.$startLoading('crypto/getTopTenCoins')
+        await this.$store.dispatch('crypto/getTopTenCoins')
+        this.$endLoading('crypto/getTopTenCoins')
+      }
+      catch (error) {
+        const message = error.message ? error.message : 'There was a problem. Try again later.'
+        Toast.create.negative(message)
+        this.$endLoading('crypto/getTopTenCoins')
+      }
+      
     }
   }
 }

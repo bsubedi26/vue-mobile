@@ -41,6 +41,28 @@
       
       <!-- DYANMIC PAGE ROUTES -->
       <router-view />
+
+      <q-tabs color="dark" slot="navigation">
+        <q-route-tab
+          icon="home"
+          to="/"
+          exact
+          slot="title"
+        />
+        <q-route-tab
+          icon="fa-search"
+          to="/search"
+          exact
+          slot="title"
+        />
+        <q-route-tab
+          icon="fa-address-card-o"
+          to="/about"
+          exact
+          slot="title"
+        />
+      </q-tabs>
+      
     </q-layout>
   </div>
 </template>
@@ -78,7 +100,7 @@ export default {
   data () {
     return {
       links: [
-        { name: 'Home', path: '/', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
+        { name: 'Home', path: '/currency', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
         { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
         { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
       ]

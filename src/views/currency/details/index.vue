@@ -15,6 +15,7 @@
 import CurrencyDetailsItem from './item'
 
   export default {
+    name: 'currency-details',
     components: {
       CurrencyDetailsItem
     },

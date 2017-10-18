@@ -42,6 +42,6 @@ export default {
 
 <style>
     .coin-name {
-        background-color: #7cd87c;
+        /* background-color: #7cd87c; */
     }
 </style>

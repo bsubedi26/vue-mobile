@@ -1,18 +1,18 @@
 import axios from 'axios'
 import currenciesJSON from './data.json'
-// const root = '//api.coinmarketcap.com/v1/ticker/'
+const root = '//api.coinmarketcap.com/v1/ticker/'
 
 const actions = {
-  handleError (error) {
+  _handleError (error) {
     console.log('.catch error: ', error)
-    alert(JSON.stringify(error))
+    return Promise.reject(error)
   },
-  getCurrenciesLimit10 () {
-    return axios.get('https://express-api3.herokuapp.com/api/coin/10').catch(actions.handleError)
-    // return axios.get(`${root}?limit=10`).catch(actions.handleError)
+  _fetch (ctx, url) {
+    return axios.get(url).catch(actions._handleError)
+    // return axios.get(`error.url.limit=10`).catch(actions.handleError)
   },
 
-  addImage ({ commit }, currencies) {
+  _addImage ({ commit }, currencies) {
     return currencies.map(cryptoCurrency => {
       cryptoCurrency.id = cryptoCurrency.id in currenciesJSON ? cryptoCurrency.id : undefined
       cryptoCurrency.image = `${cryptoCurrency.id}_image`
@@ -24,10 +24,14 @@ const actions = {
     })
   },
 
-  async fetch ({ commit, dispatch }) {
-    const response = await dispatch('getCurrenciesLimit10')
-    const result = await dispatch('addImage', response.data.currencies)
+  async getTopTenCoins ({ commit, dispatch }) {
+    const response = await dispatch('_fetch', 'https://express-api3.herokuapp.com/api/coin/10')
+    const result = await dispatch('_addImage', response.data.currencies)
     commit('SET_CURRENCIES', result)
+  },
+  async getAllCoins ({ commit, dispatch }) {
+    const response = await dispatch('_fetch', root)
+    commit('SET_ALL_CURRENCIES', response.data)
   }
 
 }
@@ -35,15 +39,20 @@ const actions = {
 const mutations = {
   SET_CURRENCIES (state, currencies) {
     state.currencies = currencies
+  },
+  SET_ALL_CURRENCIES (state, currencies) {
+    state.allCurrencies = currencies
   }
 }
 
 const state = {
-  currencies: []
+  currencies: [],
+  allCurrencies: []
 }
 
 const getters = {
   currencies: (state) => state.currencies,
+  allCurrencies: (state) => state.allCurrencies,
   currency (state) {
     return (searchName) => {
       const currencyFound = state.currencies.filter(currency => currency.id === searchName)

@@ -5,6 +5,8 @@ import routerAuth from './auth'
 Vue.use(Router)
 
 const load = (page) => () => import(`@/${page.toLowerCase()}/${page}.vue`) // '@' is alias for src/views
+const loadIndex = (folder) => () => import(`@/${folder}/index.vue`) // '@' is alias for src/views
+const loadChildren = (folder, subFolder) => () => import(`@/${folder}/${subFolder}/index.vue`) // '@' is alias for src/views
 
 const router = new Router({
   /*
@@ -20,10 +22,41 @@ const router = new Router({
    */
 
   routes: [
-    { path: '/currency/:name', component: load('Details') },
-    { path: '/', component: load('Home') },
-    { path: '/login', component: load('Login') },
-    { path: '/signup', component: load('Signup') },
+    {
+      path: '/currency',
+      component: loadIndex('currency'),
+      children: [
+        {
+          path: '',
+          component: loadChildren('currency', 'list')
+        },
+        {
+          path: 'details/:name',
+          component: loadChildren('currency', 'details')
+        }
+      ]
+    },
+
+    {
+      path: '/search',
+      component: loadIndex('search'),
+      children: [
+        {
+          path: '',
+          component: loadChildren('search', 'list')
+        }
+        // {
+        //   path: 'details/:name',
+        //   component: loadChildren('Search', 'SearchDetails')
+        // }
+      ]
+    },
+    // { path: '/currency', component: load('Currency') },
+    // { path: '/currency/:name', component: load('Details') },
+    // { path: '/login', component: load('Login') },
+    // { path: '/signup', component: load('Signup') },
+    { path: '/', redirect: '/currency' },
+    { path: '/about', component: loadIndex('about') },
     // Error as last component to catch if route is not found
     { path: '*', component: load('Error') } // Not found
   ]
