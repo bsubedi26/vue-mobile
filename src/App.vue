@@ -45,7 +45,9 @@
       </div>
       
       <!-- DYANMIC PAGE ROUTES -->
-      <router-view />
+      <transition name="transitions" enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOut" mode="out-in">
+        <router-view />
+      </transition>
 
       <q-tabs color="dark" slot="navigation">
         <q-route-tab
