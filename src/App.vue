@@ -115,8 +115,8 @@ export default {
       links: [
         { name: 'Home', path: '/currency', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
         { name: 'Settings', path: '/settings', icon: 'fa fa-cog', sublabel: 'Go to Config Settings' },
-        { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
-        { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
+        // { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
+        // { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
       ]
     }
   },
