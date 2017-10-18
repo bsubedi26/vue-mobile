@@ -8,6 +8,10 @@ const load = (page) => () => import(`@/${page.toLowerCase()}/${page}.vue`) // '@
 const loadIndex = (folder) => () => import(`@/${folder}/index.vue`) // '@' is alias for src/views
 const loadChildren = (folder, subFolder) => () => import(`@/${folder}/${subFolder}/index.vue`) // '@' is alias for src/views
 
+const loadLayout = (folder) => () => import(`@/${folder}/layout.vue`) // '@' is alias for src/views
+const loadChild = (folder, subFolder) => () => import(`@/${folder}/index.vue`) // '@' is alias for src/views
+// const loadCmp = (folder, component) => import(`@/${folder}/${component}.vue`)
+
 const router = new Router({
   /*
    * NOTE! VueRouter "history" mode DOESN'T works for Cordova builds,
@@ -39,11 +43,13 @@ const router = new Router({
 
     {
       path: '/search',
-      component: loadIndex('search'),
+      // component: loadIndex('search'),
+      component: loadLayout('search'),
       children: [
         {
           path: '',
-          component: loadChildren('search', 'list')
+          // component: loadChildren('search', 'list')
+          component: loadChild('search/list')
         }
         // {
         //   path: 'details/:name',
