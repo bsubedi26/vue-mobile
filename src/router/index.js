@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import { sync } from 'vuex-router-sync'
+// import { sync } from 'src/store/route'
 import routerAuth from './auth'
+// import store from 'src/store'
 
 Vue.use(Router)
 
@@ -61,6 +64,7 @@ const router = new Router({
   ]
 })
 
+// sync(store, router)
 routerAuth(router)
 
 export default router

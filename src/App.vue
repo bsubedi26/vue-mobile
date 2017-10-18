@@ -4,12 +4,12 @@
     <q-layout ref="layout" view="lHh Lpr fff" :left-class="{'bg-grey-2': true}">
       <!-- NAVBAR -->
       <q-toolbar slot="header">
-
-        <q-btn flat v-go-back.single="$router.go(-1)" class="cordova-only electron-only">
+        <!-- v-go-back.single="lastRoute[0].from.fullPath" -->
+        <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class="">
           <q-icon name="arrow_back" />
         </q-btn>
 
-        <q-btn flat @click="$refs.layout.toggleLeft()">
+        <q-btn v-if="routeStack.length === 1" flat @click="$refs.layout.toggleLeft()">
           <q-icon name="menu" />
         </q-btn>
     
@@ -17,9 +17,9 @@
           Vue Cryptocurrency
           <div slot="subtitle">Version: {{$q.version}}</div>
         </q-toolbar-title>
-        <!-- <q-btn flat @click="handleLogout()">
+        <q-btn flat @click="handleLogout()">
           Logout
-        </q-btn>   -->
+        </q-btn>
       </q-toolbar>
 
       <!-- Left Side Panel -->
@@ -118,9 +118,27 @@ export default {
       ]
     }
   },
+  computed: {
+    routeStack () {
+      return this.$store.getters['route/stack']
+    },
+    lastRoute () {
+      const arr = this.$store.getters['route/stack']
+      return arr.filter((item, i) => arr.length === i + 1)
+    }
+  },
   methods: {
+    backButtonClicked () {
+      this.$store.dispatch('route/backButton')
+      this.$router.go(-1)
+      // this.$router.push(`${this.lastRoute[0].from.fullPath}/back`)
+      // this.$router.push({ 
+      //   name: this.lastRoute[0].from.fullPath,
+      //   params: { backButton: 'true' } 
+      // })
+    },
     handleLogout () {
-      this.$store.dispatch('auth/logout')
+      // this.$store.dispatch('auth/logout')
     },
     goToRoute (path) {
       this.$router.push(path)

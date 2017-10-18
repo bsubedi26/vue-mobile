@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { createVuexLoader } from 'vuex-loading'
-import createPersistedState from 'vuex-persistedstate'
+// import createPersistedState from 'vuex-persistedstate'
 // import IdleVue from 'idle-vue'
 import authModule from './auth'
 import crypto from './crypto'
+import route from './route'
 
 const VuexLoading = createVuexLoader({
   moduleName: 'loading',
@@ -17,15 +18,15 @@ Vue.use(VuexLoading)
 
 const store = new Vuex.Store({
   modules: {
-    crypto
+    crypto,
+    route
   },
   plugins: [
     authModule,
-    VuexLoading.Store,
-    createPersistedState()
+    VuexLoading.Store
+    // createPersistedState()
   ]
 })
-
 // Vue.use(IdleVue, { 
 //   store,
 //   idleTime: 3000
