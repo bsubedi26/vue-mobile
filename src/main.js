@@ -32,7 +32,7 @@ import Quasar, {
   GoBack
 } from 'quasar'
 import Vuelidate from 'vuelidate'
-import router from './router'
+import router from './router/root.routes'
 import store from './store'
 import { checkPercentChange, currencyWithCommas, cleanJson } from './filter'
 import './components/index'

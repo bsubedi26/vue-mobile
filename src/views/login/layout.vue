@@ -1,38 +1,40 @@
 <template>
-  <div class="login mt-3">
-  
-    <q-card class="margin-top-30 width-550">
-  
-      <q-card-title class="text-center">
-        <h4 class="card-title"> {{ cardHeader }}</h4>
-        <!-- <h4 v-if="serviceError" class="card-title"> {{ serviceError }}</h4> -->
-      </q-card-title>
-      <q-card-separator />
-  
-      <q-card-main>
-        <q-input v-model="form.email" @blur="$v.form.email.$touch" @keyup.enter="handleSubmit" :error="$v.form.email.$error" float-label="*Email" />
-        <span class="text-negative" v-if="$v.form.email.$error">Please provide a valid email address.</span>
-  
-        <q-input type="password" v-model="form.password" @blur="$v.form.password.$touch" @keyup.enter="handleSubmit" :error="$v.form.password.$error" float-label="*Password" />
-        <span class="text-negative" v-if="$v.form.password.$error">Please provide a valid password.</span>
-        <br />
-  
-        <div class="text-grey-6 margin-top-15">
-          Don't have an Account?
-          <router-link to="/signup">
-            <span class="text-primary">Signup here.</span>
-          </router-link>
-        </div>
-  
-        <q-btn :disabled="$v.form.$error" class="margin-top-20" color="primary" @click="handleSubmit">Submit</q-btn>
-        <q-btn class="margin-top-20" color="secondary" @click="checkCookie">Check Cookie</q-btn>
-      </q-card-main>
-  
-    </q-card>
-  
-    <q-inner-loading :visible="$isLoading('auth/authenticate')" />
-  
-  </div>
+  <q-layout>
+    <div class="login mt-3">
+    
+      <q-card class="margin-top-30 width-550">
+    
+        <q-card-title class="text-center">
+          <h4 class="card-title"> {{ cardHeader }}</h4>
+          <!-- <h4 v-if="serviceError" class="card-title"> {{ serviceError }}</h4> -->
+        </q-card-title>
+        <q-card-separator />
+    
+        <q-card-main>
+          <q-input v-model="form.email" @blur="$v.form.email.$touch" @keyup.enter="handleSubmit" :error="$v.form.email.$error" float-label="*Email" />
+          <span class="text-negative" v-if="$v.form.email.$error">Please provide a valid email address.</span>
+    
+          <q-input type="password" v-model="form.password" @blur="$v.form.password.$touch" @keyup.enter="handleSubmit" :error="$v.form.password.$error" float-label="*Password" />
+          <span class="text-negative" v-if="$v.form.password.$error">Please provide a valid password.</span>
+          <br />
+    
+          <div class="text-grey-6 margin-top-15">
+            Don't have an Account?
+            <router-link to="/signup">
+              <span class="text-primary">Signup here.</span>
+            </router-link>
+          </div>
+    
+          <q-btn :disabled="$v.form.$error" class="margin-top-20" color="primary" @click="handleSubmit">Submit</q-btn>
+          <q-btn class="margin-top-20" color="secondary" @click="checkCookie">Check Cookie</q-btn>
+        </q-card-main>
+    
+      </q-card>
+    
+      <q-inner-loading :visible="$isLoading('auth/authenticate')" />
+    
+    </div>
+  </q-layout>
 </template>
 
 <script>

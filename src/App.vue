@@ -5,11 +5,11 @@
       <!-- NAVBAR -->
       <q-toolbar slot="header">
         <!-- v-go-back.single="lastRoute[0].from.fullPath" -->
-        <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class="">
+        <!-- <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class="">
           <q-icon name="arrow_back" />
-        </q-btn>
+        </q-btn> -->
 
-        <q-btn v-if="routeStack.length === 1" flat @click="$refs.layout.toggleLeft()">
+        <q-btn flat @click="$refs.layout.toggleLeft()">
           <q-icon name="menu" />
         </q-btn>
     

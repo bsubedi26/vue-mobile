@@ -11,7 +11,6 @@ export default (router) => {
 
   router.beforeEach((to, from, next) => {
     const stack = Object.assign({}, { to, from })
-    // console.log('ROUTE CHANGED: ', stack)
     console.log('ROUTE CHANGED: ', to, from)
     store.dispatch('route/pushStack', stack)
 

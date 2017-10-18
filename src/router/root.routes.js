@@ -7,13 +7,8 @@ import routerAuth from './auth'
 
 Vue.use(Router)
 
-const load = (page) => () => import(`@/${page.toLowerCase()}/${page}.vue`) // '@' is alias for src/views
-const loadIndex = (folder) => () => import(`@/${folder}/index.vue`) // '@' is alias for src/views
-const loadChildren = (folder, subFolder) => () => import(`@/${folder}/${subFolder}/index.vue`) // '@' is alias for src/views
-
 const loadLayout = (folder) => () => import(`@/${folder}/layout.vue`) // '@' is alias for src/views
-const loadChild = (folder, subFolder) => () => import(`@/${folder}/index.vue`) // '@' is alias for src/views
-// const loadCmp = (folder, component) => import(`@/${folder}/${component}.vue`)
+const loadChild = (folder) => () => import(`@/${folder}/index.vue`) // '@' is alias for src/views
 
 const router = new Router({
   /*
@@ -31,27 +26,25 @@ const router = new Router({
   routes: [
     {
       path: '/currency',
-      component: loadIndex('currency'),
+      component: loadLayout('currency'),
       children: [
         {
           path: '',
-          component: loadChildren('currency', 'list')
+          component: loadChild('currency/list')
         },
         {
           path: 'details/:name',
-          component: loadChildren('currency', 'details')
+          component: loadChild('currency/details')
         }
       ]
     },
 
     {
       path: '/search',
-      // component: loadIndex('search'),
       component: loadLayout('search'),
       children: [
         {
           path: '',
-          // component: loadChildren('search', 'list')
           component: loadChild('search/list')
         }
         // {
@@ -60,13 +53,13 @@ const router = new Router({
         // }
       ]
     },
-    { path: '/login', component: load('login') },
-    { path: '/settings', component: loadIndex('settings') },
-    { path: '/signup', component: load('signup') },
-    { path: '/about', component: loadIndex('about') },
+    { path: '/login', component: loadLayout('login') },
+    { path: '/settings', component: loadLayout('settings') },
+    { path: '/signup', component: loadLayout('signup') },
+    { path: '/about', component: loadLayout('about') },
     { path: '/', redirect: '/currency' },
     // Error as last component to catch if route is not found
-    { path: '*', component: load('Error') } // Not found
+    { path: '*', component: loadLayout('Error') } // Not found
   ]
 })
 
