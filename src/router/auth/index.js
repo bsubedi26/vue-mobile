@@ -1,3 +1,4 @@
+import store from 'src/store'
 // import ToastMessage from '../components/Message.vue'
 const ToastMessage = {}
 
@@ -9,8 +10,11 @@ export default (router) => {
   }
 
   router.beforeEach((to, from, next) => {
-    // console.log('to ', to)
-    // console.log('from ', from)
+    const stack = Object.assign({}, { to, from })
+    // console.log('ROUTE CHANGED: ', stack)
+    console.log('ROUTE CHANGED: ', to, from)
+    store.dispatch('route/pushStack', stack)
+
     const authenticated = checkAuth()
     if (to.meta.requiresAuth) {
       if (!authenticated) {
