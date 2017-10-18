@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div v-if="$q.platform.is.cordova" class="row justify-center pa1">
-            <img width="60" height="60" :src="'/android_asset/www/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+
+        <div v-if="$q.platform.is.platform === 'android'" class="row justify-center pa1">
+            <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+            <!-- <img width="60" height="60" :src="'/android_asset/www/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name"> -->
+            <!-- <img width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name"> -->
         </div>
         
         <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
@@ -26,9 +29,22 @@
 
 <script>
 export default {
+  data () {
+      return {
+          str: 'ooooo',
+          q: {}
+      }
+  },
   props: ['currency'],
   name: 'currency-item',
+  mounted () {
+    //   console.log('mm', this.$q)
+    // alert(this.$q.platform.toString())
+  },
   methods: {
+    resolveFilePath (currency) {
+        return '/statics/img/currencies/'+currency.image+'.png'
+    },
     isPercentChangeNegative (percentChange) {
       // if first character is negative
       if (percentChange[0] === '-') {

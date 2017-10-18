@@ -4,6 +4,11 @@
     <q-layout ref="layout" view="lHh Lpr fff" :left-class="{'bg-grey-2': true}">
       <!-- NAVBAR -->
       <q-toolbar slot="header">
+
+        <q-btn flat v-go-back.single="$router.go(-1)" class="cordova-only electron-only">
+          <q-icon name="arrow_back" />
+        </q-btn>
+
         <q-btn flat @click="$refs.layout.toggleLeft()">
           <q-icon name="menu" />
         </q-btn>
@@ -61,6 +66,12 @@
           exact
           slot="title"
         />
+        <!-- <q-route-tab
+          icon="fa-plane"
+          to="/settings"
+          exact
+          slot="title"
+        /> -->
       </q-tabs>
       
     </q-layout>
@@ -101,6 +112,7 @@ export default {
     return {
       links: [
         { name: 'Home', path: '/currency', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
+        { name: 'Settings', path: '/settings', icon: 'fa fa-cog', sublabel: 'Go to Config Settings' },
         { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
         { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
       ]
@@ -111,8 +123,6 @@ export default {
       this.$store.dispatch('auth/logout')
     },
     goToRoute (path) {
-      console.log(path)
-      console.log(this.$router)
       this.$router.push(path)
     }
   }

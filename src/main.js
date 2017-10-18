@@ -28,16 +28,18 @@ import Quasar, {
   QIcon,
   QModal,
   QTabs,
-  QRouteTab
+  QRouteTab,
+  GoBack
 } from 'quasar'
 import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
-import { checkPercentChange, currencyWithCommas } from './filter'
+import { checkPercentChange, currencyWithCommas, cleanJson } from './filter'
 import './components/index'
-
+Vue.directive('go-back', GoBack)
 Vue.filter('checkPercentChange', checkPercentChange)
 Vue.filter('currencyWithCommas', currencyWithCommas)
+Vue.filter('cleanJson', cleanJson)
 Vue.use(Quasar, {
   components: {
     QLayout,

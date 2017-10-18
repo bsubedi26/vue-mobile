@@ -51,12 +51,11 @@ const router = new Router({
         // }
       ]
     },
-    // { path: '/currency', component: load('Currency') },
-    // { path: '/currency/:name', component: load('Details') },
-    // { path: '/login', component: load('Login') },
-    // { path: '/signup', component: load('Signup') },
-    { path: '/', redirect: '/currency' },
+    { path: '/login', component: load('login') },
+    { path: '/settings', component: loadIndex('settings') },
+    { path: '/signup', component: load('signup') },
     { path: '/about', component: loadIndex('about') },
+    { path: '/', redirect: '/currency' },
     // Error as last component to catch if route is not found
     { path: '*', component: load('Error') } // Not found
   ]

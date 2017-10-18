@@ -8,10 +8,11 @@ export default (router) => {
     else return true
   }
 
-  router.beforeEach((toRoute, fromRoute, next) => {
-    // console.log('route.beforeEach')
+  router.beforeEach((to, from, next) => {
+    // console.log('to ', to)
+    // console.log('from ', from)
     const authenticated = checkAuth()
-    if (toRoute.meta.requiresAuth) {
+    if (to.meta.requiresAuth) {
       if (!authenticated) {
         ToastMessage.present('authRequired')
         next({

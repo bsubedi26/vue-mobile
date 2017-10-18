@@ -18,7 +18,7 @@
 
 
             <div class="row justify-center items-center">
-                <span class="f3 lh-copy text-indigo pa2">Made using the following <em class="text-red">technologies:</em></span>
+                <span class="f3 lh-copy text-indigo pa2">Made <em class="text-red">using:</em></span>
             </div>
              <div class="row justify-center items-center layout-padding">
                 <a class="pa2" href="https://www.github.com/vuejs" target="blank">
