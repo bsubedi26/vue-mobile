@@ -5,7 +5,8 @@
       <!-- NAVBAR -->
       <q-toolbar slot="header">
         <!-- v-go-back.single="lastRoute[0].from.fullPath" -->
-        <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class="">
+        <!-- <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class=""> -->
+        <q-btn v-if="routeStack.length > 1" v-go-back.single="previousRoute" @click="backButtonClicked" flat class="">
           <q-icon name="arrow_back" />
         </q-btn>
 
@@ -54,7 +55,7 @@
 
       <q-tabs color="dark" slot="navigation">
         <q-route-tab
-          icon="home"
+          icon="fa-money"
           to="/"
           exact
           slot="title"
@@ -116,7 +117,7 @@ export default {
   data () {
     return {
       links: [
-        { name: 'Home', path: '/currency', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
+        // { name: 'Home', path: '/currency', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
         { name: 'Settings', path: '/settings', icon: 'fa fa-cog', sublabel: 'Go to Config Settings' },
         // { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
         // { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
@@ -127,22 +128,21 @@ export default {
     routeStack () {
       return this.$store.getters['route/stack']
     },
-    lastRoute () {
-      const arr = this.$store.getters['route/stack']
-      return arr.filter((item, i) => arr.length === i + 1)
+    currentRoute () {
+      const stack = this.$store.getters['route/stack']
+      return stack.filter((item, i) => stack.length === i + 1)
+    },
+    previousRoute () {
+      return this.currentRoute[0].from.fullPath
     }
   },
   methods: {
     backButtonClicked () {
-      this.$store.dispatch('route/backButton')
-      this.$router.go(-1)
-      // this.$router.push(`${this.lastRoute[0].from.fullPath}/back`)
-      // this.$router.push({ 
-      //   name: this.lastRoute[0].from.fullPath,
-      //   params: { backButton: 'true' } 
-      // })
+      this.$store.dispatch('route/backButtonClick')
+      // this.$router.go(-1)
     },
     handleLogout () {
+      console.log('previousRoute ', this.previousRoute)
       // this.$store.dispatch('auth/logout')
     },
     goToRoute (path) {

@@ -74,6 +74,6 @@ const router = new Router({
 })
 
 routerAuth(router)
-// checkRouterStack(router)
+checkRouterStack(router)
 
 export default router
