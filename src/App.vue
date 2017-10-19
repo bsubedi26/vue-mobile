@@ -5,11 +5,11 @@
       <!-- NAVBAR -->
       <q-toolbar slot="header">
         <!-- v-go-back.single="lastRoute[0].from.fullPath" -->
-        <!-- <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class="">
+        <q-btn v-if="routeStack.length > 1" @click="backButtonClicked" flat class="">
           <q-icon name="arrow_back" />
-        </q-btn> -->
+        </q-btn>
 
-        <q-btn flat @click="$refs.layout.toggleLeft()">
+        <q-btn v-else flat @click="$refs.layout.toggleLeft()">
           <q-icon name="menu" />
         </q-btn>
     
@@ -45,7 +45,10 @@
       </div>
       
       <!-- DYANMIC PAGE ROUTES -->
-      <transition name="transitions" enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOut" mode="out-in">
+      <transition name="transitions"
+        enter-active-class="animated fadeInLeft"
+        mode="out-in"
+      >
         <router-view />
       </transition>
 

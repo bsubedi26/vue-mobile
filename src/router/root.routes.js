@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import { sync } from 'vuex-router-sync'
-// import { sync } from 'src/store/route'
 import routerAuth from './auth'
-// import store from 'src/store'
+import checkRouterStack from './checkRouterStack'
 
 Vue.use(Router)
 
@@ -30,11 +28,17 @@ const router = new Router({
       children: [
         {
           path: '',
-          component: loadChild('currency/list')
+          component: loadChild('currency/list'),
+          meta: {
+            child: true
+          }
         },
         {
           path: 'details/:name',
-          component: loadChild('currency/details')
+          component: loadChild('currency/details'),
+          meta: {
+            child: true
+          }
         }
       ]
     },
@@ -45,12 +49,18 @@ const router = new Router({
       children: [
         {
           path: '',
-          component: loadChild('search/list')
+          component: loadChild('search/list'),
+          meta: {
+            child: true
+          }
+        },
+        {
+          path: 'details/:name',
+          component: loadChild('search/details'),
+          meta: {
+            child: true
+          }
         }
-        // {
-        //   path: 'details/:name',
-        //   component: loadChildren('Search', 'SearchDetails')
-        // }
       ]
     },
     { path: '/login', component: loadLayout('login') },
@@ -63,7 +73,7 @@ const router = new Router({
   ]
 })
 
-// sync(store, router)
 routerAuth(router)
+// checkRouterStack(router)
 
 export default router

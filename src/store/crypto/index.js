@@ -25,12 +25,12 @@ const actions = {
   },
 
   async getTopTenCoins ({ commit, dispatch }) {
-    const response = await dispatch('_fetch', 'https://express-api3.herokuapp.com/api/coin/10')
+    const response = await dispatch('_fetch', 'https://express-api3.herokuapp.com/api/coin/?limit=10')
     const result = await dispatch('_addImage', response.data.currencies)
     commit('SET_CURRENCIES', result)
   },
   async getAllCoins ({ commit, dispatch }) {
-    const response = await dispatch('_fetch', root)
+    const response = await dispatch('_fetch', 'https://express-api3.herokuapp.com/api/coin/all')
     commit('SET_ALL_CURRENCIES', response.data)
   }
 
@@ -40,8 +40,8 @@ const mutations = {
   SET_CURRENCIES (state, currencies) {
     state.currencies = currencies
   },
-  SET_ALL_CURRENCIES (state, currencies) {
-    state.allCurrencies = currencies
+  SET_ALL_CURRENCIES (state, data) {
+    state.allCurrencies = data.currencies
   }
 }
 
@@ -53,6 +53,12 @@ const state = {
 const getters = {
   currencies: (state) => state.currencies,
   allCurrencies: (state) => state.allCurrencies,
+  filterAllCurrencies (state) {
+    return (searchName) => {
+      const currencyFound = state.allCurrencies.filter(currency => currency.id === searchName)
+      return currencyFound[0]
+    }
+  },
   currency (state) {
     return (searchName) => {
       const currencyFound = state.currencies.filter(currency => currency.id === searchName)

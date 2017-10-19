@@ -1,17 +1,25 @@
 <template>
-    <div class="bg-grey-3 row">
+    <div class="bg-grey-3 row justify-center items-center">
         <div class="layout-padding col-6">
             <div class="row justify-center">
-                <q-btn color="primary" @click="searchAll()">
-                    Search
+                <q-btn color="primary" @click="fetchAll()">
+                    All Coins
                 </q-btn>
             </div>
         </div>
 
         <div class="layout-padding col-6">
-            <div class="row justify-center">
-                <q-btn color="primary">
-                    Filter Coins!
+            <div class="row">
+                <q-input
+                    class=""
+                    v-model="searchInput"
+                    type="text"
+                    float-label="Filter Coins"
+                />
+            </div>
+            <div class="row">
+                <q-btn class="" color="dark">
+                    Submit
                 </q-btn>
             </div>
         </div>
@@ -30,21 +38,26 @@ import { Toast } from 'quasar'
 import SearchResultItem from './item'
 
 export default {
+    data () {
+        return {
+            searchInput: ''
+        }
+    },
     components: {
         SearchResultItem
     },
     name: 'search-list',
     computed: {
         allCurrencies() {
-            return this.$store.getters['crypto/allCurrencies'].slice(0, 90)
+            return this.$store.getters['crypto/allCurrencies'].slice(0, 50)
         }
     },
     methods: {
         routeChange(path) {
-
+          this.$router.push(`search/details/${path.id}`)
         },
 
-        async searchAll() {
+        async fetchAll() {
             try {
                 this.$startLoading('crypto/getAllCoins')
                 await this.$store.dispatch('crypto/getAllCoins')
