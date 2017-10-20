@@ -1,6 +1,5 @@
 import axios from 'axios'
-import currenciesJSON from './data.json'
-const root = '//api.coinmarketcap.com/v1/ticker/'
+import { addImageDescription } from 'src/util'
 
 const actions = {
   _handleError (error) {
@@ -12,26 +11,15 @@ const actions = {
     // return axios.get(`error.url.limit=10`).catch(actions.handleError)
   },
 
-  _addImage ({ commit }, currencies) {
-    return currencies.map(cryptoCurrency => {
-      cryptoCurrency.id = cryptoCurrency.id in currenciesJSON ? cryptoCurrency.id : undefined
-      cryptoCurrency.image = `${cryptoCurrency.id}_image`
-      cryptoCurrency.description = currenciesJSON[cryptoCurrency.id].description
-      cryptoCurrency.paper = currenciesJSON[cryptoCurrency.id].paper
-      cryptoCurrency.github = currenciesJSON[cryptoCurrency.id].github
-      cryptoCurrency.website = currenciesJSON[cryptoCurrency.id].website
-      return cryptoCurrency
-    })
-  },
-
   async getTopTenCoins ({ commit, dispatch }) {
     const response = await dispatch('_fetch', 'https://express-api3.herokuapp.com/api/coin/?limit=10')
-    const result = await dispatch('_addImage', response.data.currencies)
-    commit('SET_CURRENCIES', result)
+    const { currencies } = response.data
+    const results = currencies.map(addImageDescription)
+    commit('SET_CURRENCIES', results)
   },
   async getAllCoins ({ commit, dispatch }) {
     const response = await dispatch('_fetch', 'https://express-api3.herokuapp.com/api/coin/all')
-    commit('SET_ALL_CURRENCIES', response.data)
+    commit('SET_ALL_CURRENCIES', response.data.currencies)
   }
 
 }
@@ -41,7 +29,7 @@ const mutations = {
     state.currencies = currencies
   },
   SET_ALL_CURRENCIES (state, data) {
-    state.allCurrencies = data.currencies
+    state.allCurrencies = data
   }
 }
 

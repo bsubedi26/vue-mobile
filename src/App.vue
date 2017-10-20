@@ -117,8 +117,8 @@ export default {
   data () {
     return {
       links: [
-        // { name: 'Home', path: '/currency', icon: 'fa fa-home', sublabel: 'Go to Home Page' },
-        { name: 'Settings', path: '/settings', icon: 'fa fa-cog', sublabel: 'Go to Config Settings' },
+        { name: 'Currency', path: '/currency', icon: 'fa fa-money', sublabel: 'View all currencies' },
+        { name: 'Settings', path: '/settings', icon: 'fa fa-cog', sublabel: 'View config settings' },
         // { name: 'Login', path: '/login', icon: 'fa fa-sign-in', sublabel: 'Already have an Account?' },
         // { name: 'Signup', path: '/signup', icon: 'fa fa-id-card', sublabel: "Don't have an Account?" }
       ]
