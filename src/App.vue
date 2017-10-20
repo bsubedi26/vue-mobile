@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     backButtonClicked () {
-      this.$store.dispatch('route/backButtonClick')
+      this.$store.dispatch('route/setBackButtonPressed', true)
       // this.$router.go(-1)
     },
     handleLogout () {

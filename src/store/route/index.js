@@ -5,8 +5,11 @@ const actions = {
   isBackButtonPresent ({ getters }) {
     return getters.backButtonPresent
   },
-  backButtonClick ({ commit }) {
-    commit('BACK_BUTTON_CLICKED')
+  setBackButtonPressed ({ commit }, trueOrFalse) {
+    commit('SET_BACK_BUTTON_PRESSED', trueOrFalse)
+  },
+  removeLastRoute ({ commit }) {
+    commit('REMOVE_LAST_ROUTE')
   }
 }
 
@@ -24,11 +27,8 @@ const mutations = {
   ROUTE_CHANGED (state, stack) {
     state.stack.push(stack)
   },
-  RESET_BACK_BUTTON (state) {
-    state.backButtonPressed = false
-  },
-  BACK_BUTTON_CLICKED (state) {
-    state.backButtonPressed = true
+  SET_BACK_BUTTON_PRESSED (state, trueOrFalse) {
+    state.backButtonPressed = trueOrFalse
   },
   REMOVE_LAST_ROUTE (state) {
     if (state.stack.length > 1) {
