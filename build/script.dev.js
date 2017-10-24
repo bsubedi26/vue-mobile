@@ -15,6 +15,8 @@ var
   port = process.env.PORT || config.dev.port,
   uri = 'http://localhost:' + port
 
+//  temporary theme override for testing
+env.platform.theme = 'ios'
 console.log(' Starting dev server with "' + (process.argv[2] || env.platform.theme).bold + '" theme...')
 console.log(' Will listen at ' + uri.bold)
 if (config.dev.openBrowser) {
