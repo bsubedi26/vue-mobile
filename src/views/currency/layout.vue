@@ -1,11 +1,6 @@
 <template>
     <q-layout>
-      <transition name="transitions"
-        enter-active-class="animated slideInLeft"
-        mode="out-in"
-      >
-        <router-view></router-view>
-      </transition>
+      <router-view></router-view>
     </q-layout>
 </template>
 
