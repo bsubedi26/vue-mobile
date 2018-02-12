@@ -6,12 +6,12 @@
             exact
             slot="title"
         />
-        <q-route-tab
+        <!-- <q-route-tab
             icon="fa-search"
             to="/search"
             exact
             slot="title"
-        />
+        /> -->
         <q-route-tab
             icon="fa-address-card-o"
             to="/about"

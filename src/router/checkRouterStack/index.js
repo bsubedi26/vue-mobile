@@ -6,7 +6,7 @@ export default (router) => {
     const isChildRoute = to.fullPath.includes(from.fullPath)
     const payload = Object.assign({}, { to, from })
     // console.log('INDEX', to.fullPath.indexOf(from.fullPath))
-    console.log('INCLUDES', to.fullPath.includes(from.fullPath))
+    // console.log('INCLUDES', to.fullPath.includes(from.fullPath))
 
     // if (!backButtonPressed) {
     //   store.dispatch('route/pushStack', payload)
@@ -14,7 +14,7 @@ export default (router) => {
     // if the destination route is a children route
     // Example: from.fullPath='/page/currency && to.fullPath='/page/currency/details/1' 
     if (isChildRoute) {
-      console.log('CHILD')
+      // console.log('CHILD')
       if (!backButtonPressed) {
         store.dispatch('route/pushStack', payload)
       }

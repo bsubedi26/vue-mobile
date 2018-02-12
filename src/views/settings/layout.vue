@@ -2,12 +2,14 @@
   <q-layout class="bg-grey-3 layout-padding">
 
     <div class="row justify-center pa1">
-        <h5 class="text-primary">$q.platform</h5>
-        <ul class="list bg-grey-4 layout-padding">
-          <li class="fw5 pa2" v-for="(k, v) in $q.platform" :key="k">
-            {{v}}: {{k}}
-          </li>
-        </ul>  
+        <h5 class="text-primary">Platform Information</h5>
+        <div class="list bg-grey-4 layout-padding">
+          <ul v-if="v == 'is'" class="fw5 pa2" v-for="(k, v) in $q.platform" :key="k">
+            <li>
+              {{ k }}
+            </li>
+          </ul>
+        </div>  
     </div>
     
   </q-layout>
@@ -19,6 +21,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+ul {
+  list-style: none;
+}
 </style>
