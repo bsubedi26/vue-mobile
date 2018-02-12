@@ -2,13 +2,15 @@
     <div>
 
         <div v-if="$q.platform.is.platform === 'android'" class="row justify-center pa1">
-            <img width="60" height="60" :src="'img/currencies/'+currency.image+'.png'" :alt="currency.name">
+            <img v-if="currency.image" width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name">
+            <img v-if="!currency.image" width="60" height="60" class="img-circle" src="https://via.placeholder.com/60x60" alt="currency image placeholder">
             <!-- <img width="60" height="60" :src="'/android_asset/www/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name"> -->
             <!-- <img width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name"> -->
         </div>
         
         <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
-            <img width="60" height="60" :src="'img/currencies/'+currency.image+'.png'" :alt="currency.name">
+            <img v-if="currency.image" width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name">
+            <img v-if="!currency.image" width="60" height="60" class="img-circle" src="https://via.placeholder.com/60x60" alt="currency image placeholder">
         </div>
 
         <div class="row justify-center pa1">
@@ -42,7 +44,8 @@ export default {
   },
   methods: {
     resolveFilePath (currency) {
-        return '/statics/img/currencies/'+currency.image+'.png'
+        return 'img/currencies/'+currency.image+'.png'
+        
     },
     isPercentChangeNegative (percentChange) {
       // if first character is negative
@@ -56,6 +59,9 @@ export default {
 </script>
 
 <style>
+    .img-circle {
+        border-radius: 60px;
+    }
     .coin-name {
         /* background-color: #7cd87c; */
     }
