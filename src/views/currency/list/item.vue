@@ -2,13 +2,13 @@
     <div>
 
         <div v-if="$q.platform.is.platform === 'android'" class="row justify-center pa1">
-            <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+            <img width="60" height="60" :src="'statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
             <!-- <img width="60" height="60" :src="'/android_asset/www/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name"> -->
             <!-- <img width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name"> -->
         </div>
         
         <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
-            <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+            <img width="60" height="60" :src="'statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
         </div>
 
         <div class="row justify-center pa1">
@@ -31,7 +31,6 @@
 export default {
   data () {
       return {
-          str: 'ooooo',
           q: {}
       }
   },
