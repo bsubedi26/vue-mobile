@@ -3,14 +3,13 @@
 
         <div v-if="$q.platform.is.platform === 'android'" class="row justify-center pa1">
             <img v-if="currency.image" width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name">
-            <img v-if="!currency.image" width="60" height="60" class="img-circle" src="https://via.placeholder.com/60x60" alt="currency image placeholder">
             <!-- <img width="60" height="60" :src="'/android_asset/www/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name"> -->
             <!-- <img width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name"> -->
         </div>
         
         <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
-            <img v-if="currency.image" width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name">
-            <img v-if="!currency.image" width="60" height="60" class="img-circle" src="https://via.placeholder.com/60x60" alt="currency image placeholder">
+            <img v-if="currency.image !== 'undefined_image'" width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name">
+            <img v-else width="60" height="60" class="img-circle" src="https://via.placeholder.com/60x60" alt="currency image placeholder">
         </div>
 
         <div class="row justify-center pa1">
@@ -33,19 +32,22 @@
 export default {
   data () {
       return {
-          q: {}
+          q: {},
+          env: ''
       }
   },
   props: ['currency'],
   name: 'currency-item',
   mounted () {
-    //   console.log('mm', this.$q)
+    this.env = process.env.NODE_ENV || ''
     // alert(this.$q.platform.toString())
   },
   methods: {
     resolveFilePath (currency) {
-        return 'img/currencies/'+currency.image+'.png'
-        
+        if (this.env === 'production') {
+            return `img/currencies/${currency.image}.png`
+        }
+            return `/statics/img/currencies/${currency.image}.png`
     },
     isPercentChangeNegative (percentChange) {
       // if first character is negative

@@ -2,7 +2,8 @@
   <div>
     <div class="layout-padding col-6">
       <div v-if="$q.platform.is.desktop" class="row justify-center pa1">
-        <img width="60" height="60" :src="'/statics/img/currencies/'+currency.image+'.png'" :alt="currency.name">
+        <img v-if="currency.image !== 'undefined_image'" width="60" height="60" :src="resolveFilePath(currency)" :alt="currency.name">
+        <img v-else width="60" height="60" class="img-circle" src="https://via.placeholder.com/60x60" alt="currency image placeholder">
       </div>
 
       <div v-if="$q.platform.is.cordova" class="row justify-center pa1">
@@ -52,7 +53,7 @@
 
     <div class="layout-padding col-6 description-container">
       
-      <div class="row justify-center lh150 pa1">
+      <div class="row justify-center pa1 margin-auto w-75">
         {{ currency.description }}
       </div>
 
@@ -63,7 +64,15 @@
 <script>
 export default {
   name: 'currency-details-item',
+  data() {
+    return {
+      env: ''
+    }
+  },
   props: ['currency'],
+  mounted() {
+      this.env = process.env.NODE_ENV || ''
+  },
   methods: {
     isPercentChangeNegative (percentChange) {
         // if first character is negative
@@ -71,7 +80,13 @@ export default {
         return true
         }
         return false
-    }
+    },
+    resolveFilePath (currency) {
+        if (this.env === 'production') {
+            return `img/currencies/${currency.image}.png`
+        }
+            return `/statics/img/currencies/${currency.image}.png`
+    },
   }
 }
 </script>
@@ -86,5 +101,15 @@ export default {
     .description-container {
             margin-top: -60px;
         }
+    }
+    .img-circle {
+        border-radius: 60px;
+    }
+
+    .margin-auto {
+      margin: auto;
+    }
+    .w-75 {
+      width: 75%;
     }
 </style>
